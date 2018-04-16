@@ -53,20 +53,7 @@ class TSPTest {
         }
     }
 
-    @Test
-    void testCrossover() {
-         //Test the crossover yields proper child
-         Individual father = new Individual(cities);
-         Collections.shuffle(cities);
-         Individual mother = new Individual(cities);
-         ArrayList<Individual> child = population.crossover(father,mother);
-         assertEquals(child.size(), 2);
-    }
 
-    @Test
-    void testMutate() {
-        population = new Population(cities, 100);
-    }
 
     @Test
     void testPopulationCutoff() {

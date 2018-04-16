@@ -32,7 +32,6 @@ public class TSP {
 
         //initialize city nodes and routes
         ArrayList<City> cities = new ArrayList<>();
-        ArrayList<Individual> routes = new ArrayList<>();
         Population pop;
         int evoleTimes = 0;
 

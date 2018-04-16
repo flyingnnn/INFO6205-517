@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 /**Population Class defines all the possible routes
- * @author Nenghui Fang
+ * @author Nenghui Fang  Yuchen He
  *
  */
 public class Population {
@@ -59,22 +59,27 @@ public class Population {
             if (Math.random() < TSP.MUTATE_RATE) {
                 mutate(child.get(0));
                 nextGenPop.routes.add(child.get(0));
-                populationSpace--;
+
             }
+            else
+                nextGenPop.routes.add(child.get(0));
+            populationSpace--;
 
 
             if (TSP.FECUNDITY == 2) {
 
-                if (Math.random() < TSP.MUTATE_RATE) {
-                    mutate(child.get(1));
-                    if(populationSpace > 0) {
+                if (populationSpace > 0) {
+                    if (Math.random() < TSP.MUTATE_RATE) {
+                        mutate(child.get(1));
                         nextGenPop.routes.add(child.get(1));
-                        populationSpace--;
-                    }
-                }
 
+                    } else
+                        nextGenPop.routes.add(child.get(1));
+                    populationSpace--;
+                }
             }
         }
+        nextGenPop.getBestIndividual();
         return nextGenPop;
     }
 
@@ -113,6 +118,7 @@ public class Population {
                 }
             }
         }
+        child.get(0).updateFitness();
 
         //generate another child if needed
         if(TSP.FECUNDITY ==2){  //two children generated from parents, we need to have another child
@@ -137,6 +143,7 @@ public class Population {
                     }
                 }
             }
+           child.get(1).updateFitness();
         }
         return child;
     }

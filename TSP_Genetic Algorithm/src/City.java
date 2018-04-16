@@ -1,5 +1,5 @@
 /**City Class defines the cityNode which forms the route
- * @author Nenghui Fang
+ * @author Nenghui Fang  Yuchen He
  *
  */
 public class City {

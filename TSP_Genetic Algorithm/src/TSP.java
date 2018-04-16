@@ -7,19 +7,21 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.logging.Logger;
 
+/**Class defines the static Parameters and initialize datasets
+ * @author Nenghui Fang  Yuchen He
+ *
+ */
+
 public class TSP {
 
     /***************************static parameters used ***********************************/
-    public static final double CROSSOVER_RATE = 0.3;
-    public static final double MUTATE_RATE=0.1;
-
+    public static final double MUTATE_RATE=0.2;
     public static final double CUTOFF_RATE = 0.5; // cutoff rate for each generation
     public static final int FECUNDITY = 2; //number of offspring per mating pair
     public static final int CITIES_NUM = 5;  // initial city num
     public static final int POPULATION_SIZE = 10;  //initial population size
     public static final int MAX_GENERATION=100; //stop evolve when max generation meets
-    public static final int MAX_EUCLID = 5000; // Coordinate space(max X and max Y)for City Node
-    public static final String OUTPUT_FILENAME = "cities_data";
+    public static final int MAX_EUCLID = 1000; // Coordinate space(max X and max Y)for City Node
     /************************************************************************************/
 
     //create a logger
@@ -45,36 +47,14 @@ public class TSP {
         LOG.info("Initialize the first generation population");
         pop = new Population(cities, POPULATION_SIZE);
 
-        System.out.println(pop.toString());
+        //System.out.println(pop.toString());
 
         while(evoleTimes < MAX_GENERATION){
             pop = pop.evolve(pop);
             evoleTimes++;
-            System.out.println("Generation:" + evoleTimes + " Best candidate: " + pop.getBestIndividual().getFitness());
+            System.out.println("Generation:" + evoleTimes + " Fitness of the Best candidate: " + pop.getBestIndividual().getFitness());
         }
 
-    }
-
-
-    public void writeCitiesDataToFile() {
-        BufferedWriter bw = null;
-        try {
-            bw = new BufferedWriter(new FileWriter(OUTPUT_FILENAME));
-            for (int i = 0; i < CITIES_NUM; i++) {
-//                for (int j = 0; j < CITIES_NUM-1; j++) {
-//                    bw.write(matrix[i][j] + " ");
-//                }
-//                bw.write(matrix[i][CITIES_NUM - 1] + "\n");
-            }
-        } catch (IOException e) {
-            System.err.println("\tERROR: Input file not found");
-        } finally {
-            try {
-                bw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 }

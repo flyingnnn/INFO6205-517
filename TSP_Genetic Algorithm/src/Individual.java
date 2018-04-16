@@ -6,7 +6,7 @@ import java.util.List;
 import static java.lang.Math.sqrt;
 
 /**Route Class defines the route connecting all the cities
- * @author Nenghui Fang
+ * @author Nenghui Fang  Yuchen He
  *
  */
 
@@ -29,7 +29,7 @@ public class Individual implements Comparable<Individual>{
     public Individual(int cities_num){
         route = new ArrayList<>();
         for (int i = 0; i < cities_num; i++) {
-            route.add( new City());
+            route.add( null);
         }
         routeSize = cities_num;
     }
@@ -45,11 +45,10 @@ public class Individual implements Comparable<Individual>{
 
 
     public int getFitness(){
-//        if(fitness == 0){    //maybe some problem here
-//            fitness = 1.0/getRouteWeight();
-//        }
-//
-        return (int)getRouteWeight();
+        if(fitness == 0){    //maybe some problem here
+            fitness = (int)getRouteWeight();
+        }
+        return fitness;
     }
 
     public void updateFitness(){
@@ -98,10 +97,10 @@ public class Individual implements Comparable<Individual>{
         int compareQuantity = ((Individual)o).getFitness();
 
         //ascending order
-        return this.fitness - compareQuantity;
+        //return this.fitness - compareQuantity;
 
         //descending order
-        //return (int)(compareQuantity - this.fitness);
+        return compareQuantity - this.fitness;
 
     }
 
